@@ -14,4 +14,16 @@ class Database extends Config{
             die("Error: " . $e->getMessage());
         }
     }
+
+    // Fetch All Users from DB
+    public function retrieve(){
+        try{
+            $sql = "SELECT * FROM oo_users ORDER BY id DESC";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll();
+        }catch(PDOException $e){
+            die("Error: " . $e->getMessage());
+        }
+    }
 }

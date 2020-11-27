@@ -86,17 +86,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>1</th>
-                                <th>Omar</th>
-                                <th>EL ATMANI</th>
-                                <th>contact@omaghd.com</th>
-                                <th>+212608704934</th>
-                                <th>
-                                    <a href="#" class="btn btn-info btn-sm rounded-pill">Modifier</a>
-                                    <a href="#" class="btn btn-danger btn-sm rounded-pill">Delete</a>
-                                </th>
-                            </tr>
 
                         </tbody>
                     </table>

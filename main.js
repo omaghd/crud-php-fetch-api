@@ -1,6 +1,7 @@
 const addForm   = document.getElementById("add-user-form");
 const showAlert = document.getElementById("showAlert");
 const addModal  = new bootstrap.Modal(document.getElementById('addNewUserModal'));
+const usersTable  = document.querySelector('tbody');
 
 // Add New User Ajax Request
 addForm.addEventListener('submit', async (e) => {
@@ -19,7 +20,7 @@ addForm.addEventListener('submit', async (e) => {
             method: 'POST',
             body: formData,
         });
-        
+
         const response      = await data.text();
         showAlert.innerHTML = response;
 
@@ -27,5 +28,18 @@ addForm.addEventListener('submit', async (e) => {
         addForm.reset();
         addForm.classList.remove('was-validated');
         addModal.hide();
+
+        fetchAllUsers();
     }
-})
+});
+
+// Fetch All Users Ajax Request
+const fetchAllUsers = async () => {
+    const data = await fetch('action.php?read=1', {
+        method: 'GET',
+    });
+    const response = await data.text();
+    usersTable.innerHTML = response;
+};
+
+fetchAllUsers();

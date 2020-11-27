@@ -19,3 +19,31 @@ if(isset($_POST["add"])){
         echo $util->showMessage('danger', 'Something is wrong!');
     }
 }
+
+// Handle Fetch All Users Ajax Request
+if(isset($_GET["read"])){
+    $users = $db->retrieve();
+    $output = '';
+    if(count($users)>0){
+        foreach($users as $user){
+            $output .= '
+                        <tr>
+                            <th>'.$user["id"].'</th>
+                            <th>'.$user["first_name"].'</th>
+                            <th>'.$user["last_name"].'</th>
+                            <th>'.$user["email"].'</th>
+                            <th>'.$user["phone"].'</th>
+                            <th>
+                                <a href="#" id="'.$user["id"].'" class="btn btn-info btn-sm rounded-pill">Modifier</a>
+                                <a href="#" id="'.$user["id"].'" class="btn btn-danger btn-sm rounded-pill">Delete</a>
+                            </th>
+                        </tr>
+            ';
+        }
+        echo $output;
+    }else{
+        echo    "<tr>
+                    <td colspan='6'>No Users found in DB!</td>
+                </tr>";
+    }
+}

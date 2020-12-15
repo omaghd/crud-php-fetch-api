@@ -20,6 +20,52 @@
                     <form action="" id="add-user-form" class="p-2" novalidate>
                         <div class="row mb-3 gx-3">
                             <div class="col">
+                                <input class="form-control" type="text" name="fname" placeholder="Enter First Name" required>
+                                <div class="invalid-feedback">First Name is required</div>
+                            </div>
+                            <div class="col">
+                                <input class="form-control" type="text" name="lname" placeholder="Enter Last Name" required>
+                                <div class="invalid-feedback">Last Name is required</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <input class="form-control" type="email" name="email" placeholder="Enter Email" required>
+                            <div class="invalid-feedback">Email is required</div>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <input class="form-control" type="tel" name="phone" placeholder="Enter Phone" required>
+                            <div class="invalid-feedback">Phone is required</div>
+                        </div>
+
+                        <div class="mb-3 d-flex justify-content-center">
+                            <input class="btn btn-primary" type="submit" id="add-user-btn" value="Add New User" required>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add new User Modal END -->
+
+    <!-- Update User Modal START -->
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="anuModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="anuModal">Update User</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="edit-user-form" class="p-2" novalidate>
+                        <input type="hidden" name="id" id="id">
+                        <div class="row mb-3 gx-3">
+                            <div class="col">
                                 <input class="form-control" type="text" id="fname" name="fname" placeholder="Enter First Name" required>
                                 <div class="invalid-feedback">First Name is required</div>
                             </div>
@@ -41,7 +87,7 @@
                         </div>
 
                         <div class="mb-3 d-flex justify-content-center">
-                            <input class="btn btn-primary" type="submit" id="add-user-btn" value="Add New User" required>
+                            <input class="btn btn-warning" type="submit" id="edit-user-btn" value="Update User" required>
                         </div>
 
                     </form>
@@ -50,13 +96,13 @@
         </div>
     </div>
 
-    <!-- Add new User Modal END -->
+    <!-- Update User Modal END -->
 
     <div class="container">
         <div class="row mt-4">
             <div class="col-lg-12 d-flex justify-content-between align-items-center">
                 <div>
-                    <h4 class="text-primary">All users</h4>
+                    <h4 class="text-dark text-uppercase">Users List</h4>
                 </div>
                 <div>
                     <button class="btn btn-success" data-toggle="modal" data-target="#addNewUserModal">Add New User</button>

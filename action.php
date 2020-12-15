@@ -34,7 +34,7 @@ if(isset($_GET["read"])){
                             <th>'.$user["email"].'</th>
                             <th>'.$user["phone"].'</th>
                             <th>
-                                <a href="#" id="'.$user["id"].'" class="btn btn-info btn-sm rounded-pill">Modifier</a>
+                                <a href="#" id="'.$user["id"].'" data-toggle="modal" data-target="#editUserModal" class="btn btn-warning btn-sm rounded-pill editLink">Update</a>
                                 <a href="#" id="'.$user["id"].'" class="btn btn-danger btn-sm rounded-pill">Delete</a>
                             </th>
                         </tr>
@@ -45,5 +45,27 @@ if(isset($_GET["read"])){
         echo    "<tr>
                     <td colspan='6'>No Users found in DB!</td>
                 </tr>";
+    }
+}
+
+// Handle Edit Users Ajax Request
+if(isset($_GET["edit"])){
+    $id = $_GET["id"];
+    $user = $db->fetchOne($id);
+    echo json_encode($user);
+}
+
+// Handle Update Users Ajax Request
+if(isset($_POST['edit'])){
+    $id    = $util->testInput($_POST["id"]);
+    $fname = $util->testInput($_POST["fname"]);
+    $lname = $util->testInput($_POST["lname"]);
+    $email = $util->testInput($_POST["email"]);
+    $phone = $util->testInput($_POST["phone"]);
+    
+    if($db->update($id, $fname, $lname, $email, $phone)){
+        echo $util->showMessage('success', 'User Updated Succesfully!');
+    }else{
+        echo $util->showMessage('danger', 'Something is wrong!');
     }
 }

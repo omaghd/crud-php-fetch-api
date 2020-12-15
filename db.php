@@ -26,4 +26,36 @@ class Database extends Config{
             die("Error: " . $e->getMessage());
         }
     }
+
+    // Fetch one User from DB
+    public function fetchOne($id){
+        try{
+            $sql = "SELECT * FROM oo_users WHERE id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$id]);
+            return $stmt->fetch();
+        }catch(PDOException $e){
+            die("Error: " . $e->getMessage());
+        }
+    }
+
+    // Edit an User in DB
+    public function update($id, $fname, $lname, $email, $phone){
+        try{
+            $sql = "UPDATE 
+                        oo_users 
+                    SET
+                        first_name = ?,
+                        last_name = ?,
+                        email = ?,
+                        phone = ?
+                    WHERE 
+                        id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$fname, $lname, $email, $phone, $id]);
+            return true;
+        }catch(PDOException $e){
+            die("Error: " . $e->getMessage());
+        }
+    }
 }

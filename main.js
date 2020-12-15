@@ -97,3 +97,22 @@ updateForm.addEventListener('submit', async (e) => {
         fetchAllUsers();
     }
 });
+
+// Delete Users Ajax Request
+usersTable.addEventListener('click', (e) => {
+    if(e.target && e.target.matches('a.deleteLink')){
+        e.preventDefault();
+        let id = e.target.getAttribute("id");
+        deleteUser(id);
+    }
+});
+
+const deleteUser = async (id) => {
+    const data = await fetch(`action.php?delete=1&id=${id}`, {
+        method: 'GET'
+    });
+    const response = await data.text();
+    showAlert.innerHTML = response;
+
+    fetchAllUsers();
+}

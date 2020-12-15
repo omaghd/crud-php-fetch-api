@@ -39,7 +39,7 @@ class Database extends Config{
         }
     }
 
-    // Edit an User in DB
+    // Edit a User in DB
     public function update($id, $fname, $lname, $email, $phone){
         try{
             $sql = "UPDATE 
@@ -53,6 +53,21 @@ class Database extends Config{
                         id = ?";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([$fname, $lname, $email, $phone, $id]);
+            return true;
+        }catch(PDOException $e){
+            die("Error: " . $e->getMessage());
+        }
+    }
+
+    // Delete a User from DB
+    public function delete($id){
+        try{
+            $sql = "DELETE FROM 
+                        oo_users 
+                    WHERE 
+                        id = ?";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([$id]);
             return true;
         }catch(PDOException $e){
             die("Error: " . $e->getMessage());

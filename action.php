@@ -35,7 +35,7 @@ if(isset($_GET["read"])){
                             <th>'.$user["phone"].'</th>
                             <th>
                                 <a href="#" id="'.$user["id"].'" data-toggle="modal" data-target="#editUserModal" class="btn btn-warning btn-sm rounded-pill editLink">Update</a>
-                                <a href="#" id="'.$user["id"].'" class="btn btn-danger btn-sm rounded-pill">Delete</a>
+                                <a href="#" id="'.$user["id"].'" class="btn btn-danger btn-sm rounded-pill deleteLink">Delete</a>
                             </th>
                         </tr>
             ';
@@ -67,5 +67,13 @@ if(isset($_POST['edit'])){
         echo $util->showMessage('success', 'User Updated Succesfully!');
     }else{
         echo $util->showMessage('danger', 'Something is wrong!');
+    }
+}
+
+// Handle Delete User Ajax Request
+if(isset($_GET['delete'])){
+    $id = $_GET['id'];
+    if($db->delete($id)){
+        echo $util->showMessage('danger', 'User Deleted Succesfully!');
     }
 }
